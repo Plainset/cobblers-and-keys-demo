@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Cobblers &amp; Keys, Leamington Spa</title>
+<meta name="description" content="Cobblers &amp; Keys, 2 Court Street, Leamington Spa — a master shoe repair, key cutting and locksmith workshop with 30+ years' experience, rated 4.9 from 45 Google reviews and flagged LGBTQ+ friendly.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  /* ---- Page-specific: About ---- */
+
+  /* ---- Story hero (photo-settle treatment, smaller scale than home) ---- */
+  .story-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: clamp(300px, 44vw, 480px);
+    display: flex;
+    align-items: flex-end;
+    background: var(--color-navy-deep);
+  }
+  .story-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    transform: scale(1.05);
+    filter: saturate(0.96);
+    will-change: transform;
+  }
+  .story-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(16, 25, 38, 0.5) 0%, rgba(16, 25, 38, 0.32) 55%, rgba(16, 25, 38, 0.86) 100%);
+    opacity: 0.6;
+  }
+  .story-hero__image.is-active {
+    animation: story-hero-settle 5s var(--ease-out) forwards;
+  }
+  .story-hero.is-active .story-hero__overlay {
+    animation: story-hero-overlay-settle 5s var(--ease-out) forwards;
+  }
+  @keyframes story-hero-settle {
+    from { transform: scale(1.05); filter: saturate(0.96); }
+    to   { transform: scale(1); filter: saturate(1); }
+  }
+  @keyframes story-hero-overlay-settle {
+    from { opacity: 0.6; }
+    to   { opacity: 0.4; }
+  }
+  .story-hero__image.is-static { transform: scale(1); filter: saturate(1); animation: none; }
+  .story-hero.is-static .story-hero__overlay,
+  .story-hero .story-hero__overlay.is-static { opacity: 0.4; animation: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .story-hero__image { transform: scale(1); filter: saturate(1); animation: none !important; }
+    .story-hero__overlay { opacity: 0.4; animation: none !important; }
+  }
+
+  .story-hero__content {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--space-5) var(--space-4);
+    color: var(--color-paper);
+    width: 100%;
+  }
+  .story-hero__content .eyebrow { color: var(--color-cognac-pale); }
+  .story-hero__content h1 { color: var(--color-white); }
+  .story-hero__rule {
+    height: 2px;
+    width: 84px;
+    background: var(--color-cognac);
+    margin: var(--space-2) 0 var(--space-3);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-slow) var(--ease-key);
+    transition-delay: 400ms;
+  }
+  .story-hero.is-active .story-hero__rule,
+  .story-hero__rule.is-static { transform: scaleX(1); }
+  @media (prefers-reduced-motion: reduce) {
+    .story-hero__rule { transform: scaleX(1); transition: none; }
+  }
+  .story-hero__lead {
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    max-width: 56ch;
+  }
+
+  /* ---- Two-up narrative layout ---- */
+  .story-split {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-5);
+    align-items: center;
+  }
+  .story-split--reverse .story-split__media { order: 2; }
+  .story-split__media img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-line);
+  }
+  .story-split__media {
+    position: relative;
+  }
+  .story-split__media .label-tag {
+    position: absolute;
+    left: var(--space-2);
+    bottom: calc(-1 * var(--space-2));
+  }
+  @media (max-width: 899px) {
+    .story-split, .story-split--reverse .story-split__media { grid-template-columns: 1fr; order: initial; }
+    .story-split { grid-template-columns: 1fr; }
+  }
+
+  /* ---- Half/half stat strip ---- */
+  .split-stat {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+  }
+  .split-stat__half {
+    padding: var(--space-4);
+    text-align: center;
+  }
+  .split-stat__half:first-child {
+    background: var(--color-navy-deep);
+    color: var(--color-paper);
+  }
+  .split-stat__half:last-child {
+    background: var(--color-cognac-pale);
+  }
+  .split-stat__figure {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    line-height: 1;
+    margin-bottom: 0.2em;
+  }
+  .split-stat__half:first-child .split-stat__figure { color: var(--color-cognac-pale); }
+  .split-stat__half:last-child .split-stat__figure { color: var(--color-cognac-deep); }
+  .split-stat__label {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  @media (max-width: 639px) {
+    .split-stat { grid-template-columns: 1fr; }
+  }
+
+  /* ---- Values grid ---- */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+  @media (max-width: 899px) {
+    .values-grid { grid-template-columns: 1fr; }
+  }
+  .value-card__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: var(--color-cognac-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-2);
+  }
+  .value-card__icon svg { width: 22px; height: 22px; }
+
+  /* ---- Social proof strip ---- */
+  .proof-strip {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    box-shadow: var(--shadow-card);
+  }
+  .proof-strip__icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: var(--color-paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .proof-strip__icon svg { width: 24px; height: 24px; }
+  .proof-strip p { margin: 0; color: var(--color-text-soft); }
+  .proof-strip strong { color: var(--color-navy-deep); }
+
+  /* ---- Final CTA band ---- */
+  .cta-band { text-align: center; }
+  .cta-band .btn-row {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-3);
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__fill"></div></div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="nav__brand" href="index.html">
+      <span class="nav__brand-mark">Cobblers <span>&amp;</span> Keys</span>
+    </a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+      <span class="nav__toggle-icon"></span>
+    </button>
+    <ul class="nav__menu" id="primary-nav" data-open="false">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html" aria-current="page">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a class="btn btn--cognac" href="tel:01926425175">Call 01926 425175</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ STORY HERO ============ -->
+  <section class="story-hero" data-hero-patina>
+    <img
+      class="story-hero__image"
+      src="assets/img/facebook/shopfront-exterior.jpg"
+      alt="The Cobblers &amp; Keys shopfront on Court Street, Leamington Spa, with navy and cream signage and fairy lights along the fascia"
+      width="960" height="720">
+    <div class="story-hero__overlay" aria-hidden="true"></div>
+    <div class="story-hero__content container">
+      <p class="eyebrow">Our Story</p>
+      <div class="story-hero__rule" aria-hidden="true"></div>
+      <h1 data-reveal="up" data-reveal-delay="1">Thirty-plus years of fixing things properly</h1>
+      <p class="story-hero__lead lead" data-reveal="up" data-reveal-delay="2">
+        Cobblers &amp; Keys is a genuine independent workshop on Court Street — a master shoe repair
+        service that's grown, over 30-plus years, into a small local institution for keys, locks,
+        sharpening, and a couple of unexpected sidelines.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ THE CRAFT ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="story-split" data-reveal="up">
+        <div>
+          <p class="eyebrow">The Craft</p>
+          <h2>A Master Shoe Repairer, Still at the Bench</h2>
+          <p>
+            At the heart of Cobblers &amp; Keys is a genuine trade skill: 30-plus years of hands-on
+            experience repairing shoes and boots. That's not a marketing figure — it's the standard
+            every pair gets, from a scuffed everyday shoe to a well-loved pair of work boots that
+            just need a new sole and a bit of care.
+          </p>
+          <p>
+            It's the kind of experience that's increasingly hard to find on a British high street,
+            and it's the reason people keep coming back to a small shop on Court Street rather than
+            binning a pair of boots that could easily be saved.
+          </p>
+        </div>
+        <div class="story-split__media">
+          <img
+            src="assets/img/facebook/repaired-boots.jpg"
+            alt="A pair of black leather boots freshly resoled and repaired at Cobblers &amp; Keys"
+            width="414" height="414" loading="lazy">
+          <span class="label-tag">Repaired on Court Street</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="ornament" aria-hidden="true">&#128273;</div></div>
+
+  <!-- ============ HOW IT GREW: SHOES TO KEYS TO EVERYTHING ELSE ============ -->
+  <section class="section section--paper-dim">
+    <div class="container">
+      <div class="text-center" data-reveal="up" style="max-width: 62ch; margin-inline: auto;">
+        <p class="eyebrow">How It Grew</p>
+        <h2>From Shoe Repairs to a Full Workshop</h2>
+        <p class="lead" style="margin-inline: auto;">
+          The name says it plainly: Cobblers &amp; Keys started as shoe repair, and key cutting and
+          locksmith work grew alongside it, the way a good local trade shop tends to add services
+          its regulars actually ask for.
+        </p>
+      </div>
+
+      <div class="story-split story-split--reverse" data-reveal="up" style="margin-top: var(--space-5);">
+        <div class="story-split__media">
+          <img
+            src="assets/img/facebook/shopfront-exterior.jpg"
+            alt="The Cobblers &amp; Keys shopfront on Court Street, Leamington Spa, showing the shop window display"
+            width="960" height="720" loading="lazy">
+          <span class="label-tag">2 Court Street</span>
+        </div>
+        <div>
+          <p>
+            Walk in today and shoe repair sits alongside key cutting done while you wait, and a
+            locksmith service for the bigger jobs — lockouts, lock changes, and general advice.
+            Knife and scissor sharpening from just &pound;1.50 rounds out the everyday trade side of
+            the shop.
+          </p>
+          <p style="margin-bottom: 0;">
+            Then there are the two sidelines that surprise most first-time visitors: an official
+            Zippo dealership, with repairs and servicing for lighters, and a sideline in custom
+            3D-printed decorative gifts, made to order. It's a genuinely unusual mix for one small
+            shop — and that's rather the point.
+          </p>
+        </div>
+      </div>
+
+      <div class="split-stat" data-reveal="up" data-reveal-delay="1" style="margin-top: var(--space-5);">
+        <div class="split-stat__half">
+          <span class="split-stat__figure">4.9 &#9733;</span>
+          <span class="split-stat__label">From 45 Google Reviews</span>
+        </div>
+        <div class="split-stat__half">
+          <span class="split-stat__figure">30+ Yrs</span>
+          <span class="split-stat__label">Shoe Repair Experience</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="ornament" aria-hidden="true">&#128273;</div></div>
+
+  <!-- ============ VALUES ============ -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="text-center" data-reveal="up" style="max-width: 60ch; margin-inline: auto;">
+        <p class="eyebrow">How We Work</p>
+        <h2>Straightforward, Skilled, and Welcoming to Everyone</h2>
+        <p class="lead" style="margin-inline: auto;">
+          Three things you can expect from a visit to Court Street.
+        </p>
+      </div>
+
+      <div class="values-grid" style="margin-top: var(--space-4);">
+        <div class="card" data-reveal="up" data-reveal-delay="1">
+          <div class="value-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-1.5z"/></svg>
+          </div>
+          <h3>Real Trade Skill</h3>
+          <p>
+            30+ years of shoe repair experience isn't picked up quickly — it shows in work that's
+            done properly the first time, not patched over.
+          </p>
+        </div>
+        <div class="card" data-reveal="up" data-reveal-delay="2">
+          <div class="value-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l7 7M20 4l-7 7M4 20l7-7M20 20l-7-7"/><circle cx="12" cy="11" r="2.2"/></svg>
+          </div>
+          <h3>Everyone Welcome</h3>
+          <p>
+            Flagged as an LGBTQ+ friendly business on Google — a small note, but one worth stating
+            plainly: everyone is welcome through the door.
+          </p>
+        </div>
+        <div class="card" data-reveal="up" data-reveal-delay="3">
+          <div class="value-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6 8 6M6 10v9h12v-9"/></svg>
+          </div>
+          <h3>A Genuine High-Street Shop</h3>
+          <p>
+            A registered local company on Court Street, not a chain — the same face behind the
+            counter, building the same reputation, one repair at a time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOCIAL PROOF ============ -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="proof-strip" data-reveal="up">
+        <div class="proof-strip__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6L22 9.3l-5 4.6L18.2 21 12 17.3 5.8 21 7 13.9 2 9.3l7.1-.7L12 2z"/></svg>
+        </div>
+        <p>
+          <strong>Rated 4.9 out of 5 from 45 Google reviews</strong> — one of the better-reviewed
+          independent trade shops in Leamington Spa, built up one satisfied customer at a time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="section section--deep">
+    <div class="container cta-band" data-reveal="up">
+      <p class="eyebrow" style="color: var(--color-cognac-pale); justify-content: center;">Come and See for Yourself</p>
+      <h2>Still Fixing Things Properly, One Repair at a Time</h2>
+      <p class="lead" style="margin-inline: auto; color: var(--color-paper);">
+        The best way to understand Cobblers &amp; Keys is a visit — bring in a repair, a key to cut,
+        or just a knife that needs an edge. Court Street is easy to find, right in the town centre.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--cognac" href="services.html">See All Services</a>
+        <a class="btn btn--on-dark" href="contact.html">Visit or Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Cobblers &amp; Keys</h3>
+        <p>Master shoe repair, key cutting and locksmith services in Leamington Spa. Rated 4.9 from 45 Google reviews.</p>
+      </div>
+      <div>
+        <h3>Visit</h3>
+        <address style="font-style: normal;">2 Court Street<br>Leamington Spa<br>CV31 1NH</address>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p><a href="tel:01926425175">01926 425175</a></p>
+        <p><a href="mailto:Cobblersandkeys715@gmail.com">Cobblersandkeys715@gmail.com</a></p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <p>
+          <a href="index.html">Home</a><br>
+          <a href="services.html">Services</a><br>
+          <a href="about.html">About</a><br>
+          <a href="contact.html">Contact</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Cobblers &amp; Keys (Leamington Spa) Limited. All rights reserved.</span>
+      <span>2 Court Street, Leamington Spa, CV31 1NH &middot; 01926 425175</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

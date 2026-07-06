@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Design tokens — Cobblers & Keys, Leamington Spa
+   Palette: "old-world cobbler & locksmith workshop" — navy shopfront paint
+   (from the real shopfront photo), tan leather cognac (from the repaired
+   boots photo), and cool steel/key-metal pewter. Distinct from every other
+   project in this consultancy's portfolio (no brass/gold — that belongs to
+   another project).
+
+   Contrast notes (checked against WCAG AA, 4.5:1 body / 3:1 large text):
+   - --color-cognac only passes AA at LARGE text sizes (headings, buttons)
+     on paper backgrounds. For small/body-sized cognac text on paper, use
+     --color-cognac-deep instead (6.6:1+, safe at any size).
+   - --color-pewter fails AA for body text on every light background,
+     including white (4.4:1). Treat pewter as a decorative/icon/large-
+     heading colour only — never small body text.
+   - On navy backgrounds, only --color-white and --color-paper are safe
+     text colours. Cognac and pewter both fail contrast directly on navy;
+     use them there only as solid button fills (with white/navy text on
+     top) or pure decoration, never as text sitting directly on navy.
+   ========================================================================== */
+
+:root {
+  /* ---- Colors: core ---- */
+  --color-navy: #1B2A3D;         /* primary — from the real shopfront's navy paint */
+  --color-navy-light: #2C4360;   /* lighter navy for hover/tints */
+  --color-navy-deep: #101926;    /* dark sections/footer */
+  --color-cognac: #A65E2E;       /* accent — leather tan. Large text/buttons only on light bg. */
+  --color-cognac-deep: #7A4520;  /* hover/active; safe for body text on paper (6.6:1+) */
+  --color-cognac-pale: #E9D3BC;  /* pale leather tint for chips/backgrounds — not for text */
+  --color-pewter: #6E7A80;       /* secondary accent — steel/key-metal. Icon/large-heading only. */
+  --color-pewter-deep: #4B545A;  /* darker pewter — safe for body text where pewter alone isn't */
+
+  /* ---- Colors: neutrals ---- */
+  --color-paper: #EFEDE6;        /* page background — cool-neutral paper, NOT warm cream */
+  --color-paper-dim: #E4E1D6;    /* secondary panel background */
+  --color-surface: #FFFFFF;      /* card surface */
+  --color-ink: #24221E;          /* body text */
+  --color-ink-soft: #55524A;     /* secondary text — checked 7.2:1 on paper, safe for body */
+  --color-line: #D8D4C6;         /* hairline borders */
+  --color-white: #FFFFFF;
+
+  /* Semantic aliases */
+  --color-bg: var(--color-paper);
+  --color-text: var(--color-ink);
+  --color-text-soft: var(--color-ink-soft);
+  --color-primary: var(--color-navy);
+  --color-accent: var(--color-cognac);
+  --color-accent-2: var(--color-pewter);
+
+  /* ---- Typography ----
+     No CDN/webfont dependency (GitHub Pages, no build step): system-font
+     stacks only. Display stack leans on the sturdiest serifs available
+     across platforms to evoke hand-lettered/engraved shop signage (the
+     "Cobblers & Keys" fascia lettering); body stack is a clean, highly
+     legible sans-serif for workshop-note readability. */
+  --font-display: Georgia, "Times New Roman", "Iowan Old Style", Cambria, serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --fs-h1: clamp(2.3rem, 4vw + 1rem, 4.2rem);
+  --fs-h2: clamp(1.85rem, 2.4vw + 1rem, 2.8rem);
+  --fs-h3: clamp(1.25rem, 1.1vw + 1rem, 1.6rem);
+  --fs-lead: clamp(1.08rem, 0.7vw + 0.9rem, 1.28rem);
+  --fs-body: 1.05rem;
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.8rem;
+
+  --lh-tight: 1.18;
+  --lh-body: 1.65;
+
+  /* ---- Spacing scale ---- */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.25rem;
+  --space-5: 3.5rem;
+  --space-6: 5.5rem;
+  --space-7: 8rem;
+
+  /* ---- Layout ---- */
+  --container-width: 1200px;
+  --container-pad: clamp(1.25rem, 4vw, 3rem);
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+
+  /* ---- Shadows (cool steel-toned, not warm) ---- */
+  --shadow-card: 0 14px 32px -18px rgba(16, 25, 38, 0.32);
+  --shadow-card-hover: 0 22px 44px -16px rgba(16, 25, 38, 0.4);
+  --shadow-soft: 0 8px 20px -12px rgba(36, 34, 30, 0.22);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-key: cubic-bezier(0.16, 0.84, 0.44, 1);
+  --dur-fast: 220ms;
+  --dur-med: 550ms;
+  --dur-slow: 1100ms;
+
+  /* Breakpoints (reference only, used in comments): 640 / 900 / 1200 */
+}

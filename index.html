@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cobblers &amp; Keys — Shoe Repair, Key Cutting &amp; Locksmith, Leamington Spa</title>
+<meta name="description" content="Cobblers &amp; Keys, 2 Court Street, Leamington Spa — master shoe repair with 30+ years' experience, key cutting, locksmith service, knife &amp; scissor sharpening and Zippo repairs. Rated 4.9 from 45 Google reviews.">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  /* ============================================================
+     Home page — hero + supporting sections
+     Page-specific styles only; shared components live in main.css
+     ============================================================ */
+
+  /* ---- Hero ---- */
+  .hero {
+    position: relative;
+    min-height: clamp(480px, 88vh, 800px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--color-navy-deep);
+  }
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+    transform: scale(1.06);
+    filter: saturate(1);
+    will-change: transform;
+  }
+  /* Scrim: navy wash, deeper at the bottom where the headline sits, so the
+     paper-coloured text stays legible without flattening the real photo. */
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(190deg,
+      rgba(16, 25, 38, 0.6) 0%,
+      rgba(16, 25, 38, 0.46) 36%,
+      rgba(16, 25, 38, 0.24) 66%,
+      rgba(16, 25, 38, 0.72) 100%);
+    transition: opacity 1.2s var(--ease-out);
+  }
+  @keyframes hero-settle {
+    from { transform: scale(1.06); filter: saturate(0.92); }
+    to   { transform: scale(1); filter: saturate(1); }
+  }
+  .hero__image.is-active {
+    animation: hero-settle 5.5s var(--ease-out) forwards;
+  }
+  .hero__image.is-static {
+    animation: none !important;
+    transform: scale(1) !important;
+    filter: none !important;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding-block: var(--space-6) var(--space-5);
+    color: var(--color-paper);
+  }
+  .hero__eyebrow {
+    color: var(--color-cognac-pale);
+    text-shadow: 0 1px 4px rgba(16, 25, 38, 0.65);
+  }
+  .hero__eyebrow::before { background: var(--color-cognac-pale); }
+  .hero__rule {
+    width: 96px;
+    height: 2px;
+    background: var(--color-cognac);
+    margin: 0 0 var(--space-2);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.9s var(--ease-key);
+    transition-delay: 0.15s;
+  }
+  .hero__rule.is-active { transform: scaleX(1); }
+  .hero__rule.is-static { transform: scaleX(1); transition: none; }
+
+  .hero h1 {
+    color: var(--color-white);
+    max-width: 17ch;
+    font-size: var(--fs-h1);
+    text-shadow: 0 2px 18px rgba(16, 25, 38, 0.55);
+  }
+  .hero__lead {
+    font-family: var(--font-sans);
+    font-size: var(--fs-lead);
+    color: var(--color-paper);
+    max-width: 48ch;
+    text-shadow: 0 1px 10px rgba(16, 25, 38, 0.5);
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+  .hero__meta {
+    margin-top: var(--space-4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--color-cognac-pale);
+    text-shadow: 0 1px 6px rgba(16, 25, 38, 0.6);
+  }
+  .hero__meta strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--color-white);
+    letter-spacing: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__image { transform: none; animation: none; }
+    .hero__rule { transform: scaleX(1); transition: none; }
+  }
+
+  /* ---- Intro / tagline ---- */
+  .intro {
+    text-align: center;
+  }
+  .intro__lead {
+    margin-inline: auto;
+    font-size: var(--fs-lead);
+  }
+  .intro .ornament { margin-top: var(--space-3); }
+
+  /* ---- Trust strip ---- */
+  .trust {
+    background: var(--color-paper-dim);
+    border-block: 1px solid var(--color-line);
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+  }
+  .trust-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-2);
+  }
+  .trust-item__icon {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .trust-item__icon svg { width: 22px; height: 22px; }
+  .trust-item h3 {
+    font-size: 1.02rem;
+    margin-bottom: 0.25em;
+  }
+  .trust-item p {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--color-text-soft);
+    margin: 0;
+  }
+  @media (max-width: 1199px) {
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 639px) {
+    .trust-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---- Services preview grid ---- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+  @media (max-width: 899px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+  .service-card__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: var(--color-cognac-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-2);
+  }
+  .service-card__icon svg { width: 22px; height: 22px; }
+  /* Steel/key-metal accent for the lock-hardware icon specifically — icons are
+     graphical (non-text), so the 3:1 non-text contrast rule applies, not the
+     4.5:1 body-text rule; pewter passes that against both its own white icon
+     glyph and the surrounding card background. */
+  .service-card__icon--pewter { background: var(--color-pewter-deep); }
+  .service-card p { font-family: var(--font-sans); font-size: 0.95rem; color: var(--color-text-soft); }
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+  .section-head .lead { margin-bottom: 0; }
+
+  /* ---- Craft evidence split (real boots photo) ---- */
+  .craft-split {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--space-5);
+    align-items: center;
+  }
+  .craft-split__media {
+    position: relative;
+  }
+  .craft-split__media img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-line);
+  }
+  .craft-split__media .label-tag {
+    position: absolute;
+    left: var(--space-2);
+    bottom: calc(-1 * var(--space-2));
+  }
+  @media (max-width: 899px) {
+    .craft-split { grid-template-columns: 1fr; }
+  }
+
+  /* ---- Extras strip (Zippo + 3D-printed gifts) ---- */
+  .extras-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+  @media (max-width: 899px) {
+    .extras-grid { grid-template-columns: 1fr; }
+  }
+  .extras-card {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: var(--space-3);
+    align-items: center;
+  }
+  .extras-card__media {
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-navy-deep);
+  }
+  .extras-card__media img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 480px) {
+    .extras-card { grid-template-columns: 1fr; }
+  }
+
+  /* ---- Visit-us CTA band ---- */
+  .visit-band {
+    background: var(--color-navy-deep);
+    color: var(--color-paper);
+  }
+  .visit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    align-items: start;
+  }
+  .visit-grid h3 { color: var(--color-white); }
+  .visit-card {
+    font-family: var(--font-sans);
+  }
+  .visit-card p { color: var(--color-paper); margin: 0; }
+  .visit-card a.visit-link {
+    display: inline-block;
+    margin-top: 0.5em;
+    color: var(--color-cognac-pale);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .visit-card a.visit-link:hover { border-color: var(--color-cognac-pale); }
+  .visit-band .ornament { margin-block: var(--space-4); }
+  .visit-band .ornament::before, .visit-band .ornament::after { background: rgba(239, 237, 230, 0.25); }
+  .visit-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+  @media (max-width: 899px) {
+    .visit-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__fill"></div></div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="nav__brand" href="index.html">
+      <span class="nav__brand-mark">Cobblers <span>&amp;</span> Keys</span>
+    </a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+      <span class="nav__toggle-icon"></span>
+    </button>
+    <ul class="nav__menu" id="primary-nav" data-open="false">
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a class="btn btn--cognac" href="tel:01926425175">Call 01926 425175</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero__media" data-hero-patina>
+      <img
+        class="hero__image"
+        src="assets/img/facebook/shopfront-exterior.jpg"
+        alt="The Cobblers &amp; Keys shopfront on Court Street, Leamington Spa — navy-blue and cream signage with fairy lights strung along the fascia, reading Cobblers &amp; Keys"
+        width="960" height="720"
+        fetchpriority="high">
+      <div class="hero__scrim"></div>
+    </div>
+    <div class="container hero__content">
+      <p class="hero__eyebrow eyebrow">2 Court Street &middot; Leamington Spa</p>
+      <div class="hero__rule"></div>
+      <h1 data-reveal="up" data-reveal-delay="1">Master shoe repair, key cutting &amp; locksmith, done properly</h1>
+      <p class="hero__lead" data-reveal="up" data-reveal-delay="2">
+        30+ years of hands-on repair experience under one roof on Court Street — resoling and
+        repairing shoes, cutting keys while you wait, locksmith call-outs, and knife &amp; scissor
+        sharpening from just &pound;1.50.
+      </p>
+      <div class="hero__actions" data-reveal="up" data-reveal-delay="3">
+        <a class="btn btn--cognac" href="services.html">See All Services</a>
+        <a class="btn btn--on-dark" href="contact.html">Find Us on Court Street</a>
+      </div>
+      <div class="hero__meta" data-reveal="up" data-reveal-delay="3">
+        <span><strong>4.9 &#9733;</strong>from 45 Google reviews</span>
+        <span><strong>30+ yrs</strong>master shoe repair experience</span>
+        <span><strong>Key cutting</strong>while you wait</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTRO / TAGLINE ============ -->
+  <section class="section intro">
+    <div class="container" data-reveal="up">
+      <p class="eyebrow text-center">More than a cobbler's</p>
+      <h2>Shoe Repair, Keys &amp; Locksmithing — All in One Workshop</h2>
+      <p class="lead intro__lead">
+        Cobblers &amp; Keys is an independent Court Street workshop built on one simple idea: fix it
+        properly, cut it accurately, and treat every customer the same whether they're in for a
+        &pound;1.50 knife sharpen or a full resole. Shoe repair, key cutting and locksmith work sit
+        alongside a Zippo repair service and a sideline in custom 3D-printed gifts.
+      </p>
+      <div class="ornament" aria-hidden="true">&#128273;</div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <section class="trust section--tight">
+    <div class="container trust-grid">
+      <div class="trust-item" data-reveal="up" data-reveal-delay="1">
+        <span class="trust-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E9D3BC" stroke-width="1.6"><path d="M12 2l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-1.5z"/></svg>
+        </span>
+        <div>
+          <h3>4.9 Stars, 45 Reviews</h3>
+          <p>Rated 4.9 out of 5 on Google — trusted by regular customers across Leamington Spa.</p>
+        </div>
+      </div>
+      <div class="trust-item" data-reveal="up" data-reveal-delay="2">
+        <span class="trust-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E9D3BC" stroke-width="1.6"><path d="M12 2c-3.3 0-6 2.7-6 6 0 4.5 6 12 6 12s6-7.5 6-12c0-3.3-2.7-6-6-6z"/><circle cx="12" cy="8" r="2"/></svg>
+        </span>
+        <div>
+          <h3>30+ Years Experience</h3>
+          <p>Master shoe repair skills built up over three decades, still applied to every pair that comes in.</p>
+        </div>
+      </div>
+      <div class="trust-item" data-reveal="up" data-reveal-delay="3">
+        <span class="trust-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E9D3BC" stroke-width="1.6"><circle cx="9" cy="9" r="5"/><path d="M12.5 12.5L20 20M16 16l3-3"/></svg>
+        </span>
+        <div>
+          <h3>Keys &amp; Locksmith</h3>
+          <p>Key cutting while you wait, plus a full locksmith service for homes and businesses.</p>
+        </div>
+      </div>
+      <div class="trust-item" data-reveal="up" data-reveal-delay="4">
+        <span class="trust-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E9D3BC" stroke-width="1.6"><path d="M4 4l7 7M20 4l-7 7M4 20l7-7M20 20l-7-7"/><circle cx="12" cy="11" r="2.2"/></svg>
+        </span>
+        <div>
+          <h3>LGBTQ+ Friendly</h3>
+          <p>Flagged as an LGBTQ+ friendly business on Google — everyone is welcome on Court Street.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES OVERVIEW GRID ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head" data-reveal="up">
+        <div>
+          <p class="eyebrow">What we do</p>
+          <h2>A Full Workshop of Services</h2>
+        </div>
+        <p class="lead">From a worn heel to a locked-out front door — most jobs are sorted the same day.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="card" data-reveal="up" data-reveal-delay="1">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h9c2 0 3-1 3-3 0-3-2-5-2-8 0-2 1-3 2-3 2 0 3 2 5 6 1 2 1 4 1 5 0 2-1 3-3 3H8"/><path d="M3 20v-6c2-1 3-2 3-4"/></svg>
+          </div>
+          <h3>Shoe Repair</h3>
+          <p>Resoling, heel repairs and stitching from a master repairer with 30+ years' experience.</p>
+        </div>
+        <div class="card" data-reveal="up" data-reveal-delay="2">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"/><path d="M11 11l9 9M17 17l2.5-2.5M20.5 20.5l1.5-1.5"/></svg>
+          </div>
+          <h3>Key Cutting</h3>
+          <p>Household, cabinet and car keys cut accurately while you wait.</p>
+        </div>
+        <div class="card" data-reveal="up" data-reveal-delay="3">
+          <div class="service-card__icon service-card__icon--pewter" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          </div>
+          <h3>Locksmith Service</h3>
+          <p>Lockouts, lock changes and general locksmith work for homes and businesses.</p>
+        </div>
+        <div class="card" data-reveal="up" data-reveal-delay="1">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L21 6"/></svg>
+          </div>
+          <h3>Knife &amp; Scissor Sharpening</h3>
+          <p>Household knives and scissors sharpened from just &pound;1.50.</p>
+        </div>
+        <div class="card" data-reveal="up" data-reveal-delay="2">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3c-1 2-2 3-2 5a2 2 0 0 0 4 0c0-1-.5-2-1-3M9 3s3 3 3 7a3 3 0 0 1-6 0c0-2 1-3 1-4"/><path d="M9 13v8M6 21h6"/></svg>
+          </div>
+          <h3>Zippo Dealer &amp; Repairs</h3>
+          <p>Official Zippo dealer, with repairs and servicing for lighters old and new.</p>
+        </div>
+        <div class="card" data-reveal="up" data-reveal-delay="3">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+          </div>
+          <h3>Custom 3D-Printed Gifts</h3>
+          <p>Custom-order decorative 3D-printed pieces made to order in the workshop.</p>
+        </div>
+      </div>
+
+      <p class="text-center" style="margin-top: var(--space-4);" data-reveal="up">
+        <a class="btn btn--primary" href="services.html">See Full Services &amp; Details</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CRAFT EVIDENCE: REAL REPAIRED BOOTS ============ -->
+  <section class="section section--paper-dim">
+    <div class="container">
+      <div class="craft-split" data-reveal="up">
+        <div class="craft-split__media">
+          <img
+            src="assets/img/facebook/repaired-boots.jpg"
+            alt="A pair of black leather boots freshly resoled and repaired at Cobblers &amp; Keys, shown on the workshop bench"
+            width="414" height="414" loading="lazy">
+          <span class="label-tag">Repaired in the Court Street workshop</span>
+        </div>
+        <div>
+          <p class="eyebrow">The Craft</p>
+          <h2>Real Repairs, Not Quick Fixes</h2>
+          <p>
+            Every pair that comes through the door gets the same standard of work: proper resoling,
+            careful stitching and finishing that's built on 30+ years of hands-on shoe repair
+            experience — not a shortcut or a throwaway patch job.
+          </p>
+          <p>
+            Whether it's a favourite pair of boots that just need a new sole or a work shoe that's
+            taken a battering, we treat it as worth doing properly. That's the same standard the
+            workshop applies to keys, locks and sharpening too.
+          </p>
+          <p style="margin-bottom: 0;">
+            <a class="btn btn--primary" href="services.html">See the Full Range of Repairs</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXTRAS: ZIPPO + 3D-PRINTED GIFTS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center" data-reveal="up" style="max-width: 62ch; margin-inline: auto;">
+        <p class="eyebrow">More Than You'd Expect</p>
+        <h2>A Couple of Sidelines Worth Knowing About</h2>
+        <p class="lead" style="margin-inline: auto;">
+          Alongside the day-to-day repair work, the workshop carries two genuine specialities that
+          often surprise first-time visitors.
+        </p>
+      </div>
+
+      <div class="extras-grid" style="margin-top: var(--space-4);">
+        <div class="card extras-card" data-reveal="left">
+          <div class="extras-card__media">
+            <img src="assets/img/facebook/zippo-dealer-sign.jpg" alt="Official Zippo dealer signage displayed in the Cobblers &amp; Keys shop window" loading="lazy">
+          </div>
+          <div>
+            <h3>Official Zippo Dealer</h3>
+            <p style="font-family: var(--font-sans); font-size: 0.95rem; color: var(--color-text-soft); margin-bottom: 0;">
+              A genuine Zippo dealer, stocking and repairing lighters for collectors and everyday users alike.
+            </p>
+          </div>
+        </div>
+        <div class="card extras-card" data-reveal="right">
+          <div class="extras-card__media">
+            <img src="assets/img/facebook/decorative-dragons.jpg" alt="Two decorative resin dragon ornaments, an example of the custom 3D-printed gifts made at Cobblers &amp; Keys" loading="lazy">
+          </div>
+          <div>
+            <h3>Custom 3D-Printed Gifts</h3>
+            <p style="font-family: var(--font-sans); font-size: 0.95rem; color: var(--color-text-soft); margin-bottom: 0;">
+              Decorative pieces like these dragon ornaments are made to order — a genuine "more than a cobbler's" side of the shop.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VISIT US / CONTACT CTA BAND ============ -->
+  <section class="section section--deep visit-band">
+    <div class="container">
+      <div class="text-center" data-reveal="up">
+        <p class="eyebrow eyebrow--on-dark">Come and see us</p>
+        <h2>Visit the Workshop</h2>
+      </div>
+      <div class="ornament" aria-hidden="true">&#128273;</div>
+      <div class="visit-grid">
+        <div class="visit-card" data-reveal="up" data-reveal-delay="1">
+          <h3>Address</h3>
+          <p>2 Court Street<br>Leamington Spa<br>Warwickshire, CV31 1NH</p>
+          <a class="visit-link" href="contact.html">Get directions &rarr;</a>
+        </div>
+        <div class="visit-card" data-reveal="up" data-reveal-delay="2">
+          <h3>Telephone</h3>
+          <p>Call the shop, or ask for Lee directly on the mobile number below.</p>
+          <a class="visit-link" href="tel:01926425175">01926 425175 &rarr;</a>
+        </div>
+        <div class="visit-card" data-reveal="up" data-reveal-delay="3">
+          <h3>Opening Hours</h3>
+          <p>Wed&ndash;Fri 9am&ndash;5pm, Sat 10am&ndash;4pm. Closed Sundays.</p>
+          <a class="visit-link" href="contact.html">Full opening details &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Cobblers &amp; Keys</h3>
+        <p>Master shoe repair, key cutting and locksmith services in Leamington Spa. Rated 4.9 from 45 Google reviews.</p>
+      </div>
+      <div>
+        <h3>Visit</h3>
+        <address style="font-style: normal;">2 Court Street<br>Leamington Spa<br>CV31 1NH</address>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p><a href="tel:01926425175">01926 425175</a></p>
+        <p><a href="mailto:Cobblersandkeys715@gmail.com">Cobblersandkeys715@gmail.com</a></p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <p>
+          <a href="index.html">Home</a><br>
+          <a href="services.html">Services</a><br>
+          <a href="about.html">About</a><br>
+          <a href="contact.html">Contact</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Cobblers &amp; Keys (Leamington Spa) Limited. All rights reserved.</span>
+      <span>2 Court Street, Leamington Spa, CV31 1NH &middot; 01926 425175</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

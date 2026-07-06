@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact &amp; Opening Hours | Cobblers &amp; Keys, Leamington Spa</title>
+<meta name="description" content="Visit Cobblers &amp; Keys at 2 Court Street, Leamington Spa, CV31 1NH. Call 01926 425175, or ask for Lee on 07586 682715. Email Cobblersandkeys715@gmail.com. Open Wed–Sat.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  /* ---- Page-specific: Contact ---- */
+
+  .intro {
+    position: relative;
+    overflow: hidden;
+    min-height: clamp(240px, 40vw, 420px);
+    display: flex;
+    align-items: flex-end;
+    background: var(--color-navy-deep);
+  }
+  .intro__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+    transform: scale(1.06);
+    filter: saturate(1);
+    opacity: 0;
+  }
+  .intro__image.is-active {
+    animation: intro-settle 2.6s var(--ease-out) forwards;
+  }
+  .intro__image.is-static {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  @keyframes intro-settle {
+    from { opacity: 0.001; transform: scale(1.06); }
+    15%  { opacity: 1; }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .intro__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(16, 25, 38, 0.34) 0%, rgba(16, 25, 38, 0.8) 100%);
+  }
+  .intro__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-block: var(--space-5) var(--space-4);
+  }
+  .intro .eyebrow { color: var(--color-cognac-pale); }
+  .intro h1 { color: var(--color-white); }
+  .intro__lead {
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    max-width: 56ch;
+  }
+  .intro__rule {
+    height: 2px;
+    width: 120px;
+    background: var(--color-cognac);
+    transform: scaleX(0);
+    transform-origin: left;
+    margin-block: var(--space-2) var(--space-3);
+  }
+  .intro__image.is-active ~ .intro__content .intro__rule {
+    animation: rule-draw var(--dur-med) var(--ease-key) forwards;
+    animation-delay: 2.4s;
+  }
+  .intro__image.is-static ~ .intro__content .intro__rule {
+    transform: scaleX(1);
+    animation: none;
+  }
+  @keyframes rule-draw {
+    to { transform: scaleX(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .intro__image { opacity: 1; transform: none; }
+    .intro__rule { transform: scaleX(1); }
+  }
+
+  /* ---- Primary call block ---- */
+  .call-block {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-5);
+    align-items: center;
+  }
+  @media (max-width: 899px) {
+    .call-block { grid-template-columns: 1fr; }
+  }
+  .call-card {
+    background: var(--color-navy-deep);
+    color: var(--color-paper);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5) var(--space-4);
+    box-shadow: var(--shadow-card);
+    position: relative;
+  }
+  .call-card::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(233, 211, 188, 0.3);
+    border-radius: calc(var(--radius-lg) - 8px);
+    pointer-events: none;
+  }
+  .call-card .eyebrow { color: var(--color-cognac-pale); }
+  .call-card h2 { color: var(--color-white); margin-bottom: var(--space-1); }
+  .tel-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15em;
+    text-decoration: none;
+    margin-block: var(--space-2) var(--space-1);
+  }
+  .tel-link .tel-label {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    color: var(--color-cognac-pale);
+    font-weight: 700;
+  }
+  .tel-link .tel-number {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+    color: var(--color-white);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .tel-link:hover .tel-number,
+  .tel-link:focus-visible .tel-number { color: var(--color-cognac-pale); }
+  .call-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+  .call-card__note {
+    margin-top: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--fs-small);
+    color: var(--color-paper);
+    opacity: 0.82;
+    max-width: 46ch;
+  }
+  .call-card__email {
+    font-family: var(--font-sans);
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid rgba(233, 211, 188, 0.25);
+  }
+  .call-card__email .email-label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    color: var(--color-cognac-pale);
+    font-weight: 700;
+    margin-bottom: 0.3em;
+  }
+  .call-card__email a {
+    color: var(--color-white);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.35);
+    word-break: break-all;
+  }
+  .call-card__email a:hover { border-color: var(--color-cognac-pale); color: var(--color-cognac-pale); }
+
+  /* ---- Address block ---- */
+  .address-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-top: 3px solid var(--color-cognac);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-card);
+  }
+  .address-card address {
+    font-style: normal;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: var(--color-navy-deep);
+    margin-bottom: var(--space-3);
+  }
+  .address-card address .shop-name { font-weight: 700; color: var(--color-cognac-deep); }
+  .address-meta {
+    font-family: var(--font-sans);
+    font-size: var(--fs-small);
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-3);
+  }
+  .address-card .btn { width: 100%; justify-content: center; }
+
+  /* ---- Opening hours table ---- */
+  .hours-table td:last-child, .hours-table th:last-child {
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    color: var(--color-navy-deep);
+    font-weight: 700;
+    text-align: right;
+  }
+  .hours-table tr.is-closed td { color: var(--color-cognac-deep); font-style: italic; }
+  .hours-table tr.is-unconfirmed td:last-child { color: var(--color-text-soft); font-weight: 600; font-style: italic; }
+
+  /* ---- Quick-reference services strip ---- */
+  .service-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+  @media (max-width: 899px) {
+    .service-strip { grid-template-columns: 1fr; }
+  }
+  .service-strip .card h3 { margin-bottom: var(--space-1); }
+  .service-strip .card p { font-family: var(--font-sans); font-size: 0.95rem; color: var(--color-text-soft); }
+
+  /* ---- Notice ---- */
+  .notice {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-3);
+    align-items: start;
+    background: var(--color-paper-dim);
+    border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-cognac);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+  }
+  @media (max-width: 639px) {
+    .notice { grid-template-columns: 1fr; }
+  }
+  .notice__icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    color: var(--color-cognac-deep);
+  }
+  .notice h3 { margin-bottom: 0.3em; }
+  .notice p { font-family: var(--font-sans); font-size: 0.95rem; color: var(--color-text-soft); margin-bottom: 0; }
+  .notice p + p { margin-top: 0.6em; }
+
+  /* ---- Map card ---- */
+  .map-card {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+  }
+  .map-card__frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--color-navy-deep);
+  }
+  .map-card__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .map-card__content {
+    padding: var(--space-3);
+    background: var(--color-navy-deep);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+  }
+  .map-card__content strong { display: block; color: var(--color-white); font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.3em; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__fill"></div></div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="nav__brand" href="index.html">
+      <span class="nav__brand-mark">Cobblers <span>&amp;</span> Keys</span>
+    </a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+      <span class="nav__toggle-icon"></span>
+    </button>
+    <ul class="nav__menu" id="primary-nav" data-open="false">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" aria-current="page">Contact</a></li>
+      <li><a class="btn btn--cognac" href="tel:01926425175">Call 01926 425175</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Intro banner -->
+  <section class="intro">
+    <img
+      class="intro__image"
+      data-hero-patina
+      src="assets/img/facebook/shopfront-exterior.jpg"
+      alt="The Cobblers &amp; Keys shopfront on Court Street, Leamington Spa, seen from the street corner with the Court Street sign visible">
+    <div class="intro__overlay"></div>
+    <div class="intro__content container">
+      <p class="eyebrow" data-reveal="up" data-reveal-delay="1">Get In Touch</p>
+      <div class="intro__rule" data-reveal="up" data-reveal-delay="1"></div>
+      <h1 data-reveal="up" data-reveal-delay="2">Contact &amp; Opening Hours</h1>
+      <p class="intro__lead" data-reveal="up" data-reveal-delay="3">
+        Find us at 2 Court Street, right in the centre of Leamington Spa — call ahead, email, or
+        just drop by during opening hours.
+      </p>
+    </div>
+  </section>
+
+  <!-- Primary CTA: phone + address -->
+  <section class="section">
+    <div class="container">
+      <div class="call-block">
+
+        <div class="call-card" data-reveal="left">
+          <p class="eyebrow">Speak To Us</p>
+          <h2>Call or Email</h2>
+          <p style="font-family: var(--font-sans); opacity: 0.88; max-width: 42ch;">
+            The shop line for general enquiries, or ask for Lee directly on his mobile.
+          </p>
+          <a class="tel-link" href="tel:01926425175">
+            <span class="tel-label">Shop &middot; tap to call</span>
+            <span class="tel-number">01926 425 175</span>
+          </a>
+          <a class="tel-link" href="tel:07586682715">
+            <span class="tel-label">Ask for Lee &middot; tap to call</span>
+            <span class="tel-number">07586 682 715</span>
+          </a>
+          <div class="call-card__actions">
+            <a class="btn btn--cognac" href="tel:01926425175">Call the Shop</a>
+            <a class="btn btn--on-dark" href="https://www.google.com/maps/search/?api=1&query=2+Court+Street+Leamington+Spa+CV31+1NH" target="_blank" rel="noopener">Get Directions</a>
+          </div>
+          <div class="call-card__email">
+            <span class="email-label">Email</span>
+            <a href="mailto:Cobblersandkeys715@gmail.com">Cobblersandkeys715@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="address-card" data-reveal="right">
+          <p class="eyebrow">Find Us</p>
+          <address>
+            <span class="shop-name">Cobblers &amp; Keys</span><br>
+            2 Court Street<br>
+            Leamington Spa<br>
+            Warwickshire, CV31 1NH
+          </address>
+          <p class="address-meta">
+            Right in the town centre — look for the navy shopfront with fairy lights along the
+            fascia, on the corner of Court Street.
+          </p>
+          <a class="btn btn--primary" href="https://www.google.com/maps/search/?api=1&query=2+Court+Street+Leamington+Spa+CV31+1NH" target="_blank" rel="noopener">
+            Open in Maps &amp; Get Directions
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="ornament" aria-hidden="true">&#128273;</div></div>
+
+  <!-- Map -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="map-card" data-reveal="scale">
+        <div class="map-card__frame">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-1.5384%2C52.2870%2C-1.5304%2C52.2910&amp;layer=mapnik&amp;marker=52.2890%2C-1.5344"
+            title="Map showing Cobblers &amp; Keys at 2 Court Street, Leamington Spa"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="map-card__content">
+          <strong>2 Court Street, Leamington Spa, CV31 1NH</strong>
+          Central Leamington Spa location, an easy walk from the Parade and nearby car parks.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opening hours -->
+  <section class="section section--paper-dim">
+    <div class="container">
+      <p class="eyebrow" data-reveal="up">Opening Hours</p>
+      <h2 data-reveal="up" data-reveal-delay="1">When To Find Us Open</h2>
+      <p class="lead" data-reveal="up" data-reveal-delay="2">
+        Confirmed opening hours for Wednesday to Saturday are below. We're closed Sundays.
+      </p>
+
+      <div style="max-width: 560px;" data-reveal="up" data-reveal-delay="3">
+        <table class="price-table hours-table">
+          <thead>
+            <tr><th scope="col">Day</th><th scope="col">Hours</th></tr>
+          </thead>
+          <tbody>
+            <tr class="is-unconfirmed"><td>Monday</td><td>Call ahead to confirm</td></tr>
+            <tr class="is-unconfirmed"><td>Tuesday</td><td>Call ahead to confirm</td></tr>
+            <tr><td>Wednesday</td><td>9:00am &ndash; 5:00pm</td></tr>
+            <tr><td>Thursday</td><td>9:00am &ndash; 5:00pm</td></tr>
+            <tr><td>Friday</td><td>9:00am &ndash; 5:00pm</td></tr>
+            <tr><td>Saturday</td><td>10:00am &ndash; 4:00pm</td></tr>
+            <tr class="is-closed"><td>Sunday</td><td>Closed</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-family: var(--font-sans); font-size: var(--fs-small); color: var(--color-text-soft);" data-reveal="up" data-reveal-delay="4">
+        Monday and Tuesday hours can vary — if you're planning to visit early in the week, a quick
+        call to <a href="tel:01926425175" style="color: var(--color-cognac-deep); font-weight: 600;">01926 425175</a>
+        first is the safest way to make sure we're open.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quick-reference services -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow" data-reveal="up">While You're In Touch</p>
+      <h2 data-reveal="up" data-reveal-delay="1">Common Reasons People Call</h2>
+
+      <div class="service-strip" style="margin-top: var(--space-4);">
+        <div class="card" data-reveal="up" data-reveal-delay="1">
+          <span class="label-tag">Same Day, Usually</span>
+          <h3 style="margin-top: var(--space-2);">Key Cutting</h3>
+          <p>Cut while you wait for most standard household keys — no need to book ahead.</p>
+        </div>
+        <div class="card" data-reveal="up" data-reveal-delay="2">
+          <span class="label-tag">Call for Timing</span>
+          <h3 style="margin-top: var(--space-2);">Shoe Repairs</h3>
+          <p>Bring a pair in, or call first if you'd like an idea of timing for a bigger job like a resole.</p>
+        </div>
+        <div class="card" data-reveal="up" data-reveal-delay="3">
+          <span class="label-tag">Ask for Lee</span>
+          <h3 style="margin-top: var(--space-2);">Locksmith Enquiries</h3>
+          <p>For lockouts and lock changes, call the shop or Lee's mobile directly for the fastest response.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="ornament" aria-hidden="true">&#128273;</div></div>
+
+  <!-- Honest note -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="notice" data-reveal="up">
+        <svg class="notice__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M12 8v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="12" cy="16" r="1" fill="currentColor"/>
+        </svg>
+        <div>
+          <h3>A Genuine Local Workshop</h3>
+          <p>
+            Cobblers &amp; Keys is a real high-street shop on Court Street, run in person rather than
+            online. Phone, email or a visit during opening hours are all genuinely the best ways to
+            reach us — there's no online booking system, just a shop and a phone line.
+          </p>
+          <p>
+            If you can't get through on the shop line, do try Lee's mobile — between serving
+            customers on the shop floor, calls don't always get answered first time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section section--deep">
+    <div class="container text-center" data-reveal="up">
+      <p class="eyebrow eyebrow--on-dark" style="justify-content: center;">Ready When You Are</p>
+      <h2>Come and Find Us on Court Street</h2>
+      <p class="lead" style="margin-inline: auto; color: var(--color-paper);" data-reveal="up" data-reveal-delay="1">
+        2 Court Street, Leamington Spa, CV31 1NH &mdash; Wednesday to Saturday, closed Sundays.
+      </p>
+      <div class="call-card__actions" style="justify-content: center; margin-top: var(--space-3);" data-reveal="up" data-reveal-delay="2">
+        <a class="btn btn--cognac" href="tel:01926425175">Call 01926 425175</a>
+        <a class="btn btn--on-dark" href="https://www.google.com/maps/search/?api=1&query=2+Court+Street+Leamington+Spa+CV31+1NH" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Cobblers &amp; Keys</h3>
+        <p>Master shoe repair, key cutting and locksmith services in Leamington Spa. Rated 4.9 from 45 Google reviews.</p>
+      </div>
+      <div>
+        <h3>Visit</h3>
+        <address style="font-style: normal;">2 Court Street<br>Leamington Spa<br>CV31 1NH</address>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p><a href="tel:01926425175">01926 425175</a></p>
+        <p><a href="mailto:Cobblersandkeys715@gmail.com">Cobblersandkeys715@gmail.com</a></p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <p>
+          <a href="index.html">Home</a><br>
+          <a href="services.html">Services</a><br>
+          <a href="about.html">About</a><br>
+          <a href="contact.html">Contact</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Cobblers &amp; Keys (Leamington Spa) Limited. All rights reserved.</span>
+      <span>2 Court Street, Leamington Spa, CV31 1NH &middot; 01926 425175</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

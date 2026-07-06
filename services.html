@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | Cobblers &amp; Keys, Leamington Spa</title>
+<meta name="description" content="Shoe repair, key cutting, locksmith service, knife &amp; scissor sharpening from £1.50, Zippo dealer &amp; repairs, and custom 3D-printed gifts — all at Cobblers &amp; Keys, 2 Court Street, Leamington Spa.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  /* ---- Page-specific: Services ---- */
+
+  .page-header {
+    position: relative;
+    padding-block: var(--space-6) var(--space-5);
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 18% 0%, rgba(166, 94, 46, 0.12), transparent 55%),
+      var(--color-navy-deep);
+    z-index: -1;
+  }
+  .page-header .eyebrow { color: var(--color-cognac-pale); }
+  .page-header h1, .page-header .lead { color: var(--color-paper); }
+
+  /* ---- Service section anchors ---- */
+  .service-block {
+    scroll-margin-top: 90px;
+  }
+  .service-block + .service-block {
+    border-top: 1px solid var(--color-line);
+  }
+  .service-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: var(--space-5);
+    align-items: center;
+  }
+  .service-layout--reverse .service-layout__media { order: 2; }
+  @media (max-width: 899px) {
+    .service-layout, .service-layout--reverse .service-layout__media { grid-template-columns: 1fr; order: initial; }
+    .service-layout { grid-template-columns: 1fr; }
+  }
+  .service-layout__media img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-line);
+  }
+  .service-layout__media {
+    position: relative;
+  }
+  .service-layout__media .label-tag {
+    position: absolute;
+    left: var(--space-2);
+    bottom: calc(-1 * var(--space-2));
+  }
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: var(--color-cognac-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-2);
+  }
+  .service-icon svg { width: 26px; height: 26px; }
+
+  /* ---- Feature list ---- */
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-2) 0 var(--space-3);
+    font-family: var(--font-sans);
+    display: grid;
+    gap: 0.6em;
+  }
+  .feature-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+    color: var(--color-text-soft);
+  }
+  .feature-list li::before {
+    content: "—";
+    color: var(--color-cognac-deep);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ---- Sharpening price card ---- */
+  .price-callout {
+    background: var(--color-navy);
+    color: var(--color-paper);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .price-callout__figure {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    color: var(--color-cognac-pale);
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .price-callout__figure span {
+    display: block;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.7rem;
+    color: var(--color-paper);
+    font-weight: 600;
+    margin-top: 0.3em;
+  }
+  .price-callout p { margin: 0; color: var(--color-paper); }
+
+  /* ---- Locksmith call-out box ---- */
+  .notice {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-3);
+    align-items: start;
+    background: var(--color-paper-dim);
+    border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-cognac);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+  }
+  @media (max-width: 639px) {
+    .notice { grid-template-columns: 1fr; }
+  }
+  .notice__icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    color: var(--color-cognac-deep);
+  }
+  .notice h3 { margin-bottom: 0.3em; }
+  .notice p { font-family: var(--font-sans); font-size: 0.95rem; color: var(--color-text-soft); margin-bottom: 0; }
+
+  /* ---- CTA band ---- */
+  .cta-band { text-align: center; }
+  .cta-band .btn-row {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-3);
+  }
+
+  /* ---- Quick jump nav ---- */
+  .jump-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+  .jump-nav a {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-paper);
+    background: rgba(239, 237, 230, 0.1);
+    border: 1px solid rgba(239, 237, 230, 0.25);
+    padding: 0.55em 1.1em;
+    border-radius: 999px;
+    transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+  }
+  .jump-nav a:hover, .jump-nav a:focus-visible {
+    background: var(--color-cognac);
+    border-color: var(--color-cognac);
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__fill"></div></div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="nav__brand" href="index.html">
+      <span class="nav__brand-mark">Cobblers <span>&amp;</span> Keys</span>
+    </a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+      <span class="nav__toggle-icon"></span>
+    </button>
+    <ul class="nav__menu" id="primary-nav" data-open="false">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" aria-current="page">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a class="btn btn--cognac" href="tel:01926425175">Call 01926 425175</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ PAGE HEADER ============ -->
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow">The Full Workshop</p>
+      <h1 data-reveal="up" data-reveal-delay="1">Services</h1>
+      <p class="lead" data-reveal="up" data-reveal-delay="2">
+        Six trades under one roof at 2 Court Street: master shoe repair, key cutting, a locksmith
+        service, knife &amp; scissor sharpening, an official Zippo dealership, and custom-order
+        3D-printed gifts.
+      </p>
+      <nav class="jump-nav" aria-label="Jump to a service" data-reveal="up" data-reveal-delay="3">
+        <a href="#shoe-repair">Shoe Repair</a>
+        <a href="#key-cutting">Key Cutting</a>
+        <a href="#locksmith">Locksmith</a>
+        <a href="#sharpening">Sharpening</a>
+        <a href="#zippo">Zippo</a>
+        <a href="#3d-printing">3D-Printed Gifts</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ============ SHOE REPAIR ============ -->
+  <section class="section service-block" id="shoe-repair">
+    <div class="container">
+      <div class="service-layout" data-reveal="up">
+        <div class="service-layout__media">
+          <img
+            src="assets/img/facebook/repaired-boots.jpg"
+            alt="A pair of black leather boots freshly resoled and repaired at Cobblers &amp; Keys, shown on the workshop bench"
+            width="414" height="414" loading="eager">
+          <span class="label-tag">Genuine repair, Court Street workshop</span>
+        </div>
+        <div>
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h9c2 0 3-1 3-3 0-3-2-5-2-8 0-2 1-3 2-3 2 0 3 2 5 6 1 2 1 4 1 5 0 2-1 3-3 3H8"/><path d="M3 20v-6c2-1 3-2 3-4"/></svg>
+          </div>
+          <p class="eyebrow">Master Shoe Repairer</p>
+          <h2>Shoe Repair</h2>
+          <p class="lead">
+            30+ years of hands-on experience repairing shoes and boots, applied to every pair that
+            comes through the door — from a quick heel repair to a full resole.
+          </p>
+          <ul class="feature-list">
+            <li>Resoling and heel repairs on shoes and boots</li>
+            <li>Stitching and general leather repair</li>
+            <li>Work boots, everyday shoes and smarter footwear all welcome</li>
+          </ul>
+          <p style="margin-bottom: 0;">
+            <a class="btn btn--primary" href="contact.html">Ask About a Repair</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KEY CUTTING ============ -->
+  <section class="section service-block section--paper-dim" id="key-cutting">
+    <div class="container">
+      <div class="service-layout service-layout--reverse" data-reveal="up">
+        <div class="service-layout__media">
+          <img
+            src="assets/img/facebook/shopfront-exterior.jpg"
+            alt="The Cobblers &amp; Keys shopfront window on Court Street, Leamington Spa, displaying key cutting and shoe repair signage"
+            width="960" height="720" loading="lazy">
+          <span class="label-tag">2 Court Street, Leamington Spa</span>
+        </div>
+        <div>
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"/><path d="M11 11l9 9M17 17l2.5-2.5M20.5 20.5l1.5-1.5"/></svg>
+          </div>
+          <p class="eyebrow">While You Wait</p>
+          <h2>Key Cutting</h2>
+          <p class="lead">
+            Keys cut accurately on the spot — no need to book ahead for most standard keys.
+          </p>
+          <ul class="feature-list">
+            <li>Household door keys cut while you wait</li>
+            <li>Cabinet, shed and general household keys</li>
+            <li>Friendly advice if you're not sure what key you need</li>
+          </ul>
+          <p style="margin-bottom: 0;">
+            <a class="btn btn--primary" href="contact.html">Get Directions to Court Street</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCKSMITH ============ -->
+  <section class="section service-block" id="locksmith">
+    <div class="container">
+      <p class="eyebrow" data-reveal="up">Full Locksmith Service</p>
+      <h2 data-reveal="up" data-reveal-delay="1">Locksmith Service Available</h2>
+      <p class="lead" data-reveal="up" data-reveal-delay="2">
+        Alongside cutting keys in-shop, Cobblers &amp; Keys also offers a locksmith service for
+        homes and businesses in and around Leamington Spa.
+      </p>
+      <div style="max-width: 640px; margin-top: var(--space-3);" data-reveal="up" data-reveal-delay="3">
+        <div class="notice">
+          <svg class="notice__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="5" y="11" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+          <div>
+            <h3>Best Reached By Phone</h3>
+            <p>
+              For locksmith enquiries — lock changes, lockouts or general advice — call the shop on
+              01926&nbsp;425175, or ask for Lee directly on his mobile below. It's the quickest way
+              to get a straight answer on timing and price for your specific job.
+            </p>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top: var(--space-3);" data-reveal="up" data-reveal-delay="4">
+        <a class="btn btn--primary" href="tel:07586682715">Call Lee: 07586 682715</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SHARPENING ============ -->
+  <section class="section service-block section--paper-dim" id="sharpening">
+    <div class="container">
+      <div class="service-layout" data-reveal="up">
+        <div>
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L21 6"/></svg>
+          </div>
+          <p class="eyebrow">From &pound;1.50</p>
+          <h2>Knife &amp; Scissor Sharpening</h2>
+          <p class="lead">
+            A proper, professional edge on kitchen knives and household scissors — one of the
+            simplest jobs we do, and one of the most popular.
+          </p>
+          <ul class="feature-list">
+            <li>Kitchen and household knives sharpened from &pound;1.50</li>
+            <li>Scissors sharpened to the same standard</li>
+            <li>Usually ready the same visit, or same day</li>
+          </ul>
+        </div>
+        <div class="service-layout__media">
+          <div class="price-callout">
+            <div class="price-callout__figure">&pound;1.50<span>Starting price</span></div>
+            <p>
+              Knives &amp; scissors sharpened from just &pound;1.50 — as shown on our shop signage.
+              Drop in during opening hours, no appointment needed for most items.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ZIPPO ============ -->
+  <section class="section service-block" id="zippo">
+    <div class="container">
+      <div class="service-layout service-layout--reverse" data-reveal="up">
+        <div class="service-layout__media">
+          <img
+            src="assets/img/facebook/zippo-dealer-sign.jpg"
+            alt="Official Zippo dealer signage displayed in the Cobblers &amp; Keys shop window"
+            width="414" height="414" loading="lazy">
+          <span class="label-tag">Genuine Zippo dealer</span>
+        </div>
+        <div>
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3c-1 2-2 3-2 5a2 2 0 0 0 4 0c0-1-.5-2-1-3M9 3s3 3 3 7a3 3 0 0 1-6 0c0-2 1-3 1-4"/><path d="M9 13v8M6 21h6"/></svg>
+          </div>
+          <p class="eyebrow">Official Dealer</p>
+          <h2>Zippo Dealer &amp; Repairs</h2>
+          <p class="lead">
+            A genuine, official Zippo dealer — one of the small details that separates Cobblers &amp;
+            Keys from a standard shoe repair shop.
+          </p>
+          <ul class="feature-list">
+            <li>Official Zippo dealer stock</li>
+            <li>Repairs and servicing for Zippo lighters</li>
+            <li>Ask in-shop about availability and current stock</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3D-PRINTED GIFTS ============ -->
+  <section class="section service-block section--paper-dim" id="3d-printing">
+    <div class="container">
+      <div class="service-layout" data-reveal="up">
+        <div>
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+          </div>
+          <p class="eyebrow">Made to Order</p>
+          <h2>Custom 3D-Printed Gifts</h2>
+          <p class="lead">
+            A genuine side line worth knowing about — custom-order decorative 3D-printed pieces,
+            made in-house.
+          </p>
+          <ul class="feature-list">
+            <li>Custom-order decorative pieces, made to order</li>
+            <li>Real example: decorative resin-style dragon ornaments</li>
+            <li>Ask in-shop about custom requests</li>
+          </ul>
+        </div>
+        <div class="service-layout__media">
+          <img
+            src="assets/img/facebook/decorative-dragons.jpg"
+            alt="Two decorative dragon ornaments, an example of the custom 3D-printed gifts made at Cobblers &amp; Keys"
+            width="414" height="414" loading="lazy">
+          <span class="label-tag">Example: decorative dragon ornaments</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section section--deep cta-band" data-reveal="up">
+    <div class="container">
+      <span class="eyebrow eyebrow--on-dark" style="justify-content: center;">Ready When You Are</span>
+      <h2>Drop In, or Call Ahead</h2>
+      <p class="lead" style="margin-inline: auto; text-align: center;">
+        Most jobs — key cutting, sharpening, quick repairs — don't need an appointment. For anything
+        bigger, or a locksmith call-out, a quick call to the shop is the fastest way to get sorted.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--cognac" href="tel:01926425175">Call 01926 425175</a>
+        <a class="btn btn--on-dark" href="contact.html">Find Us &amp; Opening Hours</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Cobblers &amp; Keys</h3>
+        <p>Master shoe repair, key cutting and locksmith services in Leamington Spa. Rated 4.9 from 45 Google reviews.</p>
+      </div>
+      <div>
+        <h3>Visit</h3>
+        <address style="font-style: normal;">2 Court Street<br>Leamington Spa<br>CV31 1NH</address>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p><a href="tel:01926425175">01926 425175</a></p>
+        <p><a href="mailto:Cobblersandkeys715@gmail.com">Cobblersandkeys715@gmail.com</a></p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <p>
+          <a href="index.html">Home</a><br>
+          <a href="services.html">Services</a><br>
+          <a href="about.html">About</a><br>
+          <a href="contact.html">Contact</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Cobblers &amp; Keys (Leamington Spa) Limited. All rights reserved.</span>
+      <span>2 Court Street, Leamington Spa, CV31 1NH &middot; 01926 425175</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
