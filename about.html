@@ -11,58 +11,26 @@
 <style>
   /* ---- Page-specific: About ---- */
 
-  /* ---- Story hero (photo-settle treatment, smaller scale than home) ---- */
+  /* ---- Story hero (photo-free gradient treatment, matches services.html
+     .page-header — shopfront photo lives on index.html only) ---- */
   .story-hero {
     position: relative;
     overflow: hidden;
-    min-height: clamp(300px, 44vw, 480px);
-    display: flex;
-    align-items: flex-end;
-    background: var(--color-navy-deep);
+    padding-block: var(--space-6) var(--space-5);
   }
-  .story-hero__image {
+  .story-hero::before {
+    content: "";
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 40%;
-    transform: scale(1.05);
-    filter: saturate(0.96);
-    will-change: transform;
-  }
-  .story-hero__overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(16, 25, 38, 0.5) 0%, rgba(16, 25, 38, 0.32) 55%, rgba(16, 25, 38, 0.86) 100%);
-    opacity: 0.6;
-  }
-  .story-hero__image.is-active {
-    animation: story-hero-settle 5s var(--ease-out) forwards;
-  }
-  .story-hero.is-active .story-hero__overlay {
-    animation: story-hero-overlay-settle 5s var(--ease-out) forwards;
-  }
-  @keyframes story-hero-settle {
-    from { transform: scale(1.05); filter: saturate(0.96); }
-    to   { transform: scale(1); filter: saturate(1); }
-  }
-  @keyframes story-hero-overlay-settle {
-    from { opacity: 0.6; }
-    to   { opacity: 0.4; }
-  }
-  .story-hero__image.is-static { transform: scale(1); filter: saturate(1); animation: none; }
-  .story-hero.is-static .story-hero__overlay,
-  .story-hero .story-hero__overlay.is-static { opacity: 0.4; animation: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .story-hero__image { transform: scale(1); filter: saturate(1); animation: none !important; }
-    .story-hero__overlay { opacity: 0.4; animation: none !important; }
+    background:
+      radial-gradient(ellipse at 82% 0%, rgba(166, 94, 46, 0.14), transparent 55%),
+      var(--color-navy-deep);
+    z-index: -1;
   }
 
   .story-hero__content {
     position: relative;
     z-index: 1;
-    padding-block: var(--space-5) var(--space-4);
     color: var(--color-paper);
     width: 100%;
   }
@@ -73,15 +41,6 @@
     width: 84px;
     background: var(--color-cognac);
     margin: var(--space-2) 0 var(--space-3);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--dur-slow) var(--ease-key);
-    transition-delay: 400ms;
-  }
-  .story-hero.is-active .story-hero__rule,
-  .story-hero__rule.is-static { transform: scaleX(1); }
-  @media (prefers-reduced-motion: reduce) {
-    .story-hero__rule { transform: scaleX(1); transition: none; }
   }
   .story-hero__lead {
     color: var(--color-paper);
@@ -244,13 +203,7 @@
 <main id="main">
 
   <!-- ============ STORY HERO ============ -->
-  <section class="story-hero" data-hero-patina>
-    <img
-      class="story-hero__image"
-      src="assets/img/facebook/shopfront-exterior.jpg"
-      alt="The Cobblers &amp; Keys shopfront on Court Street, Leamington Spa, with navy and cream signage and fairy lights along the fascia"
-      width="960" height="720">
-    <div class="story-hero__overlay" aria-hidden="true"></div>
+  <section class="story-hero">
     <div class="story-hero__content container">
       <p class="eyebrow">Our Story</p>
       <div class="story-hero__rule" aria-hidden="true"></div>
@@ -311,10 +264,10 @@
       <div class="story-split story-split--reverse" data-reveal="up" style="margin-top: var(--space-5);">
         <div class="story-split__media">
           <img
-            src="assets/img/facebook/shopfront-exterior.jpg"
-            alt="The Cobblers &amp; Keys shopfront on Court Street, Leamington Spa, showing the shop window display"
-            width="960" height="720" loading="lazy">
-          <span class="label-tag">2 Court Street</span>
+            src="assets/img/facebook/decorative-dragons.jpg"
+            alt="Two decorative resin dragon ornaments, an example of the custom 3D-printed gifts made at Cobblers &amp; Keys"
+            width="414" height="414" loading="lazy">
+          <span class="label-tag">One of the unexpected sidelines</span>
         </div>
         <div>
           <p>
